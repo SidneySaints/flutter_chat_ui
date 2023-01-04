@@ -161,80 +161,76 @@ class _InputState extends State<Input> {
       autofocus: true,
       child: Padding(
         padding: InheritedChatTheme.of(context).theme.inputMargin,
-        child: Material(
-          borderRadius: InheritedChatTheme.of(context).theme.inputBorderRadius,
-          color: InheritedChatTheme.of(context).theme.inputBackgroundColor,
-          child: Container(
-            decoration:
-                InheritedChatTheme.of(context).theme.inputContainerDecoration,
-            padding: safeAreaInsets,
-            child: Row(
-              textDirection: TextDirection.ltr,
-              children: [
-                if (widget.onAttachmentPressed != null)
-                  AttachmentButton(
-                    isLoading: widget.isAttachmentUploading ?? false,
-                    onPressed: widget.onAttachmentPressed,
-                    padding: buttonPadding,
-                  ),
-                Expanded(
-                  child: Padding(
-                    padding: textPadding,
-                    child: TextField(
-                      controller: _textController,
-                      cursorColor: InheritedChatTheme.of(context)
-                          .theme
-                          .inputTextCursorColor,
-                      decoration: InheritedChatTheme.of(context)
-                          .theme
-                          .inputTextDecoration
-                          .copyWith(
-                            hintStyle: InheritedChatTheme.of(context)
-                                .theme
-                                .inputTextStyle
-                                .copyWith(
-                                  color: InheritedChatTheme.of(context)
-                                      .theme
-                                      .inputTextColor
-                                      .withOpacity(0.5),
-                                ),
-                            hintText:
-                                InheritedL10n.of(context).l10n.inputPlaceholder,
-                          ),
-                      focusNode: _inputFocusNode,
-                      keyboardType: TextInputType.multiline,
-                      maxLines: 5,
-                      minLines: 1,
-                      onChanged: widget.options.onTextChanged,
-                      onTap: widget.options.onTextFieldTap,
-                      style: InheritedChatTheme.of(context)
+        child: Container(
+          decoration:
+          InheritedChatTheme.of(context).theme.inputContainerDecoration,
+          padding: safeAreaInsets,
+          child: Row(
+            textDirection: TextDirection.ltr,
+            children: [
+              if (widget.onAttachmentPressed != null)
+                AttachmentButton(
+                  isLoading: widget.isAttachmentUploading ?? false,
+                  onPressed: widget.onAttachmentPressed,
+                  padding: buttonPadding,
+                ),
+              Expanded(
+                child: Padding(
+                  padding: textPadding,
+                  child: TextField(
+                    controller: _textController,
+                    cursorColor: InheritedChatTheme.of(context)
+                        .theme
+                        .inputTextCursorColor,
+                    decoration: InheritedChatTheme.of(context)
+                        .theme
+                        .inputTextDecoration
+                        .copyWith(
+                      hintStyle: InheritedChatTheme.of(context)
                           .theme
                           .inputTextStyle
                           .copyWith(
-                            color: InheritedChatTheme.of(context)
-                                .theme
-                                .inputTextColor,
-                          ),
-                      textCapitalization: TextCapitalization.sentences,
+                        color: InheritedChatTheme.of(context)
+                            .theme
+                            .inputTextColor
+                            .withOpacity(0.5),
+                      ),
+                      hintText:
+                      InheritedL10n.of(context).l10n.inputPlaceholder,
                     ),
+                    focusNode: _inputFocusNode,
+                    keyboardType: TextInputType.multiline,
+                    maxLines: 5,
+                    minLines: 1,
+                    onChanged: widget.options.onTextChanged,
+                    onTap: widget.options.onTextFieldTap,
+                    style: InheritedChatTheme.of(context)
+                        .theme
+                        .inputTextStyle
+                        .copyWith(
+                      color: InheritedChatTheme.of(context)
+                          .theme
+                          .inputTextColor,
+                    ),
+                    textCapitalization: TextCapitalization.sentences,
                   ),
                 ),
-                ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minHeight: buttonPadding.bottom + buttonPadding.top + 24,
-                  ),
-                  child: Visibility(
-                    visible: _sendButtonVisible,
-                    child: SendButton(
-                      onPressed: _handleSendPressed,
-                      padding: buttonPadding,
-                    ),
+              ),
+              ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: buttonPadding.bottom + buttonPadding.top + 24,
+                ),
+                child: Visibility(
+                  visible: _sendButtonVisible,
+                  child: SendButton(
+                    onPressed: _handleSendPressed,
+                    padding: buttonPadding,
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
-        ),
+        )
       ),
     );
   }
